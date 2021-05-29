@@ -77,6 +77,60 @@ footer{
     max-width: 100%;
     max-height: 100%;
   }
+#button{margin: 5% auto;
+width: 100px;
+text-align: center;}
+#button a{
+    width: 100px;
+    height: 30px;
+    vertical-align: middle;
+    background-color: #F00;
+    color:#fff ;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid transparent;
+}
+#popup{
+    margin-top: 45%;
+    width: 100%;
+    height: 100%;
+    position: ficed;
+    background: rgba(0,0,0,.7);
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    visibility: hidden;
+}
+.window {
+    margin-top: 45%;
+    width: 400px;
+    height: 100px;
+    background: #fff;
+    border-radius: 10px;
+    position: relative;
+    padding: 10px;
+    text-align: center;
+    margin: 15% auto;
+}
+.close-button{
+    width: 6%;
+    height: 20%;
+    line-height: 23px;
+    background: #000;
+    border-radius: 50%;
+    border: 3pc solid #fff;
+    display: block;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+#popup:target{
+    visibility: visible;
+}
 @media only screen and (max-width: 700px) {
     #logo-besar img{
         margin-left:60px;
