@@ -167,13 +167,19 @@ text-align: center;}
         width: 320px;
         height: 320px;
         margin-left:40px;
+        visibility: hidden;
     }
 }
 @media only screen and (max-width: 360px) {
     #logo-besar img{
-        width: 200px;
-        height: 200px;
+        margin-top: 100px;
+        width: 150px;
+        height: 150px;
         margin-left:20px;
+        visibility: hidden;
+    }
+    #about{
+        margin-top: 100px;
     }
     #item{
         display: block;
@@ -197,9 +203,16 @@ text-align: center;}
     }
 }
     @media only screen and (max-width: 200px) {
+        #logo-besar{
+            visibility: hidden;
+        }
         #logo-besar img{
             width: 100px;
             height: 100px;
             margin-left:0px;
+            visibility: collapse;
+            all: none;
+            z-index: unset;
+            visibility: hidden;
         }
     }
