@@ -1,0 +1,421 @@
+$(function () {
+	"use strict";
+
+    $(document).ready( function(){
+
+    	var $_html = $("html");
+    	var $_body = $("body");
+    	var $_flexslider = $(".flexslider");
+    	var $_header_menu = $('#header');
+
+    	// 1. Bootstrap tooltip
+		$('[data-toggle="tooltip"]').tooltip();
+
+		// 2. Bootstrap Select First Tab
+		$('#widget-tab a.first').tab('show');
+		$('#map-tab a.first').tab('show');
+		$('.tab-hover .nav-tabs > li > a.first').tab('show');
+
+		// 3. Tabs hover effect
+		$('.tab-hover .nav-tabs > li > a').on("mouseover", function(){
+      	$(this).tab('show');
+   	});
+
+		// 4. Menu hover effect
+		$('.dropdown-toggle').dropdownHover();
+
+    	// 5. Fade effect on Menu and Tab
+		$('.nav .dropdown-menu').addClass('animated fadeIn');
+		$('.tab-pane').addClass('animated fadeIn');
+
+	/*
+		if( $_html.hasClass("no-touch") ){
+			$('.navbar .dropdown > a').on("click", function(){
+	         location.href = this.href;
+	      });
+      } 
+	  */
+	  
+		$('.navbar .dropdown > a').on("click", function(){
+	         location.href = this.href;
+		});
+		
+		$('.nav-tabs li a').on("click", function (e){
+			//var link = $(this).attr("href");
+			e.preventDefault();
+			//window.location = $(this).attr("href");
+			location.href = $(this).attr("href");
+		});
+		
+		// 6. FLexslider
+    	if( $_flexslider.length ){
+    		$_flexslider.flexslider({
+				selector: ".featured-slider > .slider-item",
+				maxItems: 1,
+				minItems: 1,
+				/* height:473, */
+				startAt: 0,
+				animation:"slide",
+				slideshow: true,
+				controlNav: true,
+				nextText:'<i class="fa fa-angle-right"></i>',
+				prevText:'<i class="fa fa-angle-left"></i>'
+			});
+    	}
+
+		// 7. Image popup
+		$('.post-content a.popup-image').magnificPopup({ 
+		  	type: 'image',
+			mainClass: 'mfp-with-zoom', // this class is for CSS animation below
+
+			zoom: {
+				enabled: true, // By default it's false, so don't forget to enable it
+
+				duration: 200, // duration of the effect, in milliseconds
+				easing: 'ease-in-out', // CSS transition easing function 
+
+				opener: function(openerElement) {
+				 	return openerElement.is('img') ? openerElement : openerElement.find('img');
+				}
+			}
+		});
+
+		// 8. Parallax Effect
+	   $.stellar({
+			horizontalScrolling: false,
+			verticalOffset: 60
+		});
+
+	   // 9. Full width background image
+	   var $_parallax = $( "#parallax-image" );
+
+	   if ( $_parallax.length ) {
+			$_parallax.backstretch( $_parallax.data('image') );
+		}
+
+		// 10. Sticky Sidebar
+		/* var $_datacolumn = $("[data-stickycolumn]");
+
+		if ( $( "[data-stickyparent]" ).length ) {
+			// Sticky Sidebar start when images loaded
+			imagesLoaded( $_body ).on( 'always', function( instance ) {
+			  $_datacolumn.stick_in_parent({
+					parent: "[data-stickyparent]"
+				}).on('sticky_kit:bottom', function(e) {
+				    $(this).parent().css('position', 'static');
+				})
+				.on('sticky_kit:unbottom', function(e) {
+				    $(this).parent().css('position', 'relative');
+				});
+
+				// destroy it if mobile or tablet 
+				destroy_sticky();
+			});
+		} */
+
+		var $_windowwidth = $(window).width();
+		//var windowidth = $(window).width();
+		//alert(windowidth);
+		// Destroy sticky Sidebar on Mobile and Tablet
+		/* function destroy_sticky(){
+			var $_windowwidth = $(window).width();
+			if( $_windowwidth < 992){
+				$_datacolumn.trigger("sticky_kit:detach");
+			}
+		} */
+
+		if($_windowwidth < 992){
+			FastClick.attach(document.body);
+			//alert("test2");
+		}
+
+		// 11. Mobile Menu
+		$("#mobile-nav").mmenu({
+         // options
+         searchfield: true,
+         slidingSubmenus: false,
+         extensions: ["theme-dark", "effect-slide", "border-full"]
+      },{
+         // configuration
+      });
+	
+		// 12. Mobile Menu Scrollbar
+		$('.mobile-wrapper').perfectScrollbar({
+			wheelSpeed: 1,
+			suppressScrollX: true
+		});
+
+		$('#fixed-button').on("click", function(event){
+			event.preventDefault();
+			$_html.toggleClass("ad-opened");
+		});
+
+		$('#mobile-overlay').on("click", function(event){
+			event.preventDefault();
+			$_html.toggleClass("ad-opened");
+		});
+
+		// 13. Responsive video
+		$(".image-overlay").fitVids();
+
+		/*
+		// 14. Sticky Header
+		if( !$("#main").hasClass('fixed-sidebar') ){
+	    	// Sticky menu hide
+	    	$_header_menu.headroom({
+			  "offset": 330,
+			  "tolerance": 0,
+			  "classes": {
+			    "initial": "animated",
+			    "pinned": "slideDown",
+			    "unpinned": "slideUp"
+			  }
+			});
+		}
+		*/
+		
+		var $_stickyScrollbar = $('.sticky-scroll');
+		var $_sidebar = $("#sticky-sidebar");
+		var $_goTop = $('#go-top-button');
+		var $_header_topoffset = 0;
+		var $_offset = 133;
+		$_header_topoffset = $_header_menu.offset().top;
+
+
+		// 15. Fixed Sidebar Scrollbar
+		$_stickyScrollbar.perfectScrollbar({
+			wheelSpeed: 1,
+			suppressScrollX: true
+		});
+
+		// Change scrollbar height when load
+		change_height();
+
+		// Change scrollbar height when resize
+		
+		var windowidth = $(window).width();
+		
+		if(windowidth < 1180){
+		//if(windowidth < 992){
+			$('#logoscroll img').remove();
+			//$('div#header div.container').removeClass("container");
+			//$('#con').addClass("container");
+			$('.header-mid').addClass('hidden');
+			//$('.dropdown-menu').remove();
+				//$('#main-container .main-wrapper').css({ paddingBottom: '100px' });
+			$('#main-container').css("padding-top","60px");
+		}else{
+			//$('#main-container').css("padding-top","160px");
+		}
+		
+		if(windowidth < 1220){
+			$('#sosearch').remove();
+		}else if(windowidth < 1470){
+			//alert("lebih Kecil");
+			//$('#sosearch').remove();
+			$('#isosial').remove();
+			//$('.navbar-nav li a').addClass('navfont');
+		}
+		
+		//alert(windowidth);
+		
+		$(window).on("resize", function() {
+			/* if ( $_datacolumn.length ) {
+				$(document.body).trigger("sticky_kit:recalc");
+				destroy_sticky();
+			} */
+			var w = $(window).width();
+			if(w < 800){
+			//if(w < 992){
+				$('#logoscroll img').remove();
+				$('#logoscroll img').remove();
+				//$('#main-container').css("padding-top","60px");
+			}else{
+				//$('#main-container').css("padding-top","160px");
+				//var img = $('<img id="dynamic">');
+				//img.attr('src', 'img/antaranews.com5.png');
+				//img.appendTo('#logoscroll');
+				
+			}
+			change_height();
+		});
+
+		
+		
+
+		$(window).scroll(function(){
+			// Go to top button
+			if ($(this).scrollTop() > 100) {
+				$_goTop.css({ bottom: '20px' });
+			}
+			else {
+				$_goTop.css({ bottom: '-100px' });
+			}
+			
+			if ($(this).scrollTop() > 50) {
+				$('#skinad-left').css({ top: '90px' });
+				$('#skinad-right').css({ top: '90px' });
+			}
+			else
+			{
+				$('#skinad-left').css({ top: '285px' });
+				$('#skinad-right').css({ top: '285px' });
+			}
+			
+			var windowidth = $(window).width();
+			
+			if ($(this).scrollTop() > $_header_topoffset && windowidth > 1180) {
+				$_header_menu.addClass("set-fixed");
+				$('#header-bottom').addClass("set-fixed");
+				$('#header div.container').removeClass("container");
+				$('#header-bottom div.container').removeClass("container");
+				$('#sosearch').css('display', 'block');
+				//$_header_menu.removeClass("container");
+				//$_header_menu.removeClass("row");
+				//$_sidebar.addClass("set-sidebar");
+			}else if ($(this).scrollTop() > $_header_topoffset && windowidth < 1180) {
+				$_header_menu.addClass("set-fixed");
+				$('#header-bottom').addClass("set-fixed");
+				$('#con').addClass("container");
+				$('#con-bottom').addClass("container");
+			}else {
+				$('#con').addClass("container");
+				$('#con-bottom').addClass("container");
+				//$('#rw').addclass("row");
+				$_header_menu.removeClass("set-fixed");
+				$('#header-bottom').removeClass("set-fixed");
+				$('#sosearch').css('display', 'none');
+				//$_sidebar.removeClass("set-sidebar");
+			}
+
+			/*
+			// Fixed sidebar
+			if ($(this).scrollTop() > 50) {
+				$_sidebar.addClass("get-sidebar");
+				change_height();
+			}
+			else {
+				$_sidebar.removeClass("get-sidebar");
+				change_height();
+			}
+			*/
+		});
+
+		// Change scrollbar height
+		function change_height(){
+			var windowHeight = $(window).height();
+
+			if( $_sidebar.length ){
+				$_offset = $_sidebar.position().top + 80;
+
+				var setHeight = windowHeight - $_offset;
+				$_stickyScrollbar.height(setHeight);
+				$_stickyScrollbar.perfectScrollbar('update');  // Update
+			}
+
+			$('.mobile-wrapper').height(windowHeight);
+			$('.mobile-wrapper').perfectScrollbar('update');  // Update
+		}
+		
+		// 16. Go to Top Button
+		$_goTop.on("click", function(){
+			$('html, body').animate({scrollTop : 0},700);
+			return false;
+		});
+
+		$('li.dropdown').hover(function(){
+			$(this).addClass('open');
+			}, function(){
+				$( this ).removeClass("open");
+			});
+	
+		/*
+		$('#src-mobile').on("click", function(){
+			$('#formobile').show().animate(500);
+			return false;
+		});
+		*/
+		
+		$( "#src-mobile" ).click(function() {
+		  $( "#formobile:first" ).fadeToggle( "slow", "linear" );
+		});
+		
+		
+		/*
+		$("#srolsrc").click(function() {
+		  $( "#sosearch" ).css('width', '300px');
+		});
+		*/
+		/*
+		$( "#sosearch" ).hover(function() {
+		  $("#sosearch").removeClass("srcwidth");
+		});
+		*/
+		
+		$('#sosearch').hover(function(){
+			 $("#sosearch").removeClass("srcwidth");
+		});
+			
+		$( "#srolsrc" ).click(function() {
+		  $("#sosearch").addClass("srcwidth");
+		});
+		
+		/* $("img.lazy").lazyload({
+			effect : "fadeIn"
+		}); */
+		
+		/*
+		$('#srolsrc').toggle(function () {
+			$("#sosearch").removeClass("srcwidth");
+		}, function () {
+			$('#srolsrc').show();
+			$("#sosearch").addClass("srcwidth");
+		});
+		*/
+		$("#read_more").on('click', function(){
+			$(this).remove();
+			$("#content_long").removeClass("hidden");
+		});
+    });
+});
+/* $(function($) {
+    $("img.lazy").Lazy();
+}); */
+/*
+ * End Jquery
+*/
+
+// 17. Count up share counter
+if(document.getElementById("countUp")){
+	var count = document.getElementById("countUp");
+
+	var number = 0;
+
+	if(count.hasAttribute("data-count")){
+		var number = count.getAttribute("data-count");
+	}
+
+	var options = {
+	  useEasing : true, 
+	  useGrouping : true, 
+	  separator : '',
+	  decimal : '.',
+	  prefix : '',
+	  suffix : ''
+	};
+
+	var countUp = new countUp("countUp", 0, number, 0, 2.5, options);
+
+	var waypoint = new Waypoint({
+	  element: document.getElementById('countUp'),
+	  handler: function(direction) {
+	    countUp.start();
+	  },
+	  offset: window.innerHeight-70
+	});
+}
+
+// 18. Header Search Button
+new UISearch( document.getElementById( 'sb-search' ) );
+//new UISearch( document.getElementById( 'sb-search2' ) );
+//new UISearch( document.getElementById( 'sb-search3' ) );
