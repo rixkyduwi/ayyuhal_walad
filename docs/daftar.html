@@ -208,7 +208,21 @@
 							</div>
 							<div class="col-md-12">
 								<div class="form-group">
-									<input type="text" class="form-control" placeholder="Pilih kelas">
+									<h2>Pilih Kelas:</h2>
+								<input type="radio" id="male" name="gender" value="male">
+  <label for="male">Tahsin</label><br>
+  <input type="radio" id="female" name="gender" value="female">
+  <label for="female">Pratahsin</label><br>
+  <form action="/action_page.php">
+  <label for="cars">Choose a car:</label>
+  <select id="cars" name="cars">
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+    <option value="fiat">Fiat</option>
+    <option value="audi">Audi</option>
+  </select>
+  <input type="submit">
+</form>
 								</div>
 							</div>
 							<div class="col-md-12">
@@ -221,7 +235,7 @@
 							</div>
 							<div class="col-md-12">
 								<div class="form-group">
-									<input type="submit" value="kirim" class="btn btn-white py-3 px-4">
+									<input id="kirim" type="submit" value="kirim" class="btn btn-white py-3 px-4">
 								</div>
 							</div>
 						</div>
