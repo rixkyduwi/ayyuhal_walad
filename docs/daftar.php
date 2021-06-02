@@ -180,7 +180,7 @@
 		<div class="container">
 			<div class="row no-gutters">
 				<div class="col-sm-4 p-4 p-md-5 d-flex align-items-center justify-content-center bg-primary">
-					<form action="" class="appointment-form">
+					<form action="" method="POST" class="appointment-form">
 						<h3 class="mb-3">Daftarkan diri anda Sekarang</h3>
 						<div class="row">
 							<div class="col-md-12">
@@ -328,3 +328,5 @@
 		
 	</body>
 	</html>
+	<?php
+	?>
