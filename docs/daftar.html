@@ -208,20 +208,20 @@
 							</div>
 							<div class="col-md-12">
 								<div class="form-group">
-									<h2>Pilih Kelas:</h2>
-								<input type="radio" id="male" name="gender" value="male">
-  <label for="male">Tahsin</label><br>
-  <input type="radio" id="female" name="gender" value="female">
-  <label for="female">Pratahsin</label><br>
-  <form action="/action_page.php">
-  <label for="cars">Choose a car:</label>
-  <select id="cars" name="cars">
-    <option value="volvo">Volvo</option>
-    <option value="saab">Saab</option>
-    <option value="fiat">Fiat</option>
-    <option value="audi">Audi</option>
-  </select>
-  <input type="submit">
+									<input id="id1" type="number" max="100">
+<button onclick="myFunction()">OK</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  var txt = "";
+  if (document.getElementById("id1").validity.rangeOverflow) {
+    txt = "Value too large";
+  }
+  document.getElementById("demo").innerHTML = txt;
+}
+</script>
 </form>
 								</div>
 							</div>
