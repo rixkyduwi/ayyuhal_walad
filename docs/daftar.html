@@ -180,49 +180,39 @@
 		<div class="container">
 			<div class="row no-gutters">
 				<div class="col-sm-4 p-4 p-md-5 d-flex align-items-center justify-content-center bg-primary">
-					<form action="" method="POST" class="appointment-form">
+					<form action="" name="myform" class="appointment-form">
 						<h3 class="mb-3">Daftarkan diri anda Sekarang</h3>
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input type="name" class="form-control" placeholder="Name">
+									<input type="name" name="nama" class="form-control" placeholder="Name">
 								</div>
 							</div>
 							<div class="col-md-12">
 								<div class="form-group">
-									<input type="email" class="form-control" placeholder="Email">
+									<input type="email" name="email" class="form-control" placeholder="Email">
 								</div>
 							</div>
 							<div class="col-md-12">
 								<div class="form-group">
-									<input type="text" class="form-control" placeholder="Phone">
+									<input type="text" nama="phone" class="form-control" placeholder="Phone">
 								</div>
 							</div>
 							<div class="col-md-12">
 								<div class="form-group">
 									<div class="input-wrap">
 										<div class="icon"><span class="fa fa-calendar"></span></div>
-										<input type="text" class="form-control book_date" placeholder="masukan tanggal lahir">
+										<input type="text" name="ttl" class="form-control book_date" placeholder="masukan tanggal lahir">
 									</div>
 								</div>
 							</div>
 							<div class="col-md-12">
 								<div class="form-group">
-									<input id="id1" type="number" max="100">
-<button onclick="myFunction()">OK</button>
-
-<p id="demo"></p>
-
-<script>
-function myFunction() {
-  var txt = "";
-  if (document.getElementById("id1").validity.rangeOverflow) {
-    txt = "Value too large";
-  }
-  document.getElementById("demo").innerHTML = txt;
-}
-</script>
-</form>
+									<h2>pilih kelas:</h2>
+									<input type="radio" id="male" name="gender" value="male">
+									<label for="male">Tahsin</label><br>
+									<input type="radio" id="female" name="gender" value="female">
+									<label for="female">Pratahsin</label><br>
 								</div>
 							</div>
 							<div class="col-md-12">
@@ -235,7 +225,21 @@ function myFunction() {
 							</div>
 							<div class="col-md-12">
 								<div class="form-group">
-									<input id="kirim" type="submit" value="kirim" class="btn btn-white py-3 px-4">
+									<input onclick="kirim" type="submit" value="kirim" class="btn btn-white py-3 px-4">
+								<script>
+									function kirim(){
+										var a = "https://api.whatsapp.com/send?phone=+6281326950681&text="
+										var b = document.forms["myform"]["nama"].value;
+										var c = document.forms["myform"]["email"].value;
+										var d = document.forms["myform"]["phone"].value;
+										var e = document.forms["myform"]["ttl"].value;
+										var z = a+b+c+d+e;
+										
+										alert("sakdmnwqk");
+
+
+									}
+								</script>
 								</div>
 							</div>
 						</div>
