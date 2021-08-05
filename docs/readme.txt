@@ -1,4 +1,5 @@
-Thank you for using our template!
+We use a template 
+Thank you for using our template! 
 
 For more awesome templates please visit https://colorlib.com/wp/templates/
 
