@@ -34,8 +34,11 @@
 <body>
     <div class="wrapper">
         <h2>Halaman Masuk Admin</h2>
+        
         <br>
+        
         <?php
+        
 	if(isset($_GET['alert'])){
 		if($_GET['alert']=="gagal"){
 			echo "<p>Maaf! Username & Password Salah.</p>";
@@ -59,7 +62,7 @@
             </div>
             <br>
             <div class="form-group">
-                <input type="submit" class="tombol_login btn sign" value="login">
+                <input type="submit" class="tombol_login btn sign" value="login" style="background-color:rgba(35, 246, 81, 0.815)">
             </div>
 
         </form>

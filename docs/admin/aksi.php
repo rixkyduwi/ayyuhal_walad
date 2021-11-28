@@ -8,7 +8,7 @@ include 'db/config.php';
 // berfungsi menangkap data yang dikirim
 $user = $_POST['username'];
 $pass = md5($_POST['password']);
- 
+echo $pass;
 // berfungsi menyeleksi data user dengan username dan password yang sesuai
 $sql = mysqli_query($con,"SELECT * FROM admin WHERE username='$user' AND password='$pass'");
 //berfungsi menghitung jumlah data yang ditemukan

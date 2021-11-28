@@ -135,13 +135,42 @@ include ('nav.html');
 			</div>
 	</section>
 	<!-- End Main Banner -->
-
-    <th>
-    <td></td>
-</th>
-<th>
-    <tr></tr>
-</th>
+    <?php
+                $sql = mysqli_query($con, "SELECT * FROM blog ORDER BY id ASC") or die(mysqli_error($con));
+                if(mysqli_num_rows($sql) > 0) {
+                    $no = $_POST['id'];;
+                    while($data = mysqli_fetch_assoc($sql)) {
+                        echo '
+                        <article class="featured-small box-news box-big">
+                        <a href="#" title="Twitter jeda fitur verifikasi usai seminggu dirilis">
+                            <picture>
+                                <source type="image/webp"
+                                    data-srcset="h "
+                                    srcset="'$data['foto']'">
+                                <img src="images/tumbnail_news/Thumbnail-pengumuman.jpg">
+                            </picture>
+                        </a>
+                        <header class="featured-header">
+                            <a class="category bgcolor1" href="#" title="Tekno">Update</a>
+                            <h2><a href="https://www.antaranews.com/berita/2182914/twitter-jeda-fitur-verifikasi-usai-seminggu-dirilis"
+                                    title="Twitter jeda fitur verifikasi usai seminggu dirilis">'$data['judul']'</a></h2>
+                            <p class="simple-share">
+                                <span class="article-date">30 Mei 2021 15:35</span>
+                            </p>
+                        </header>
+                    </article>';
+                        echo nl2br('<p class="p tourp" style="margin-bottom:-2em;text-align:justify;text-justify: inter-word;">'.$data['deskripsi'].'</p>');
+                    }
+                } else{
+                    echo '
+                    <tr>
+                        <td colspan="6">Tidak ada data.</td>
+                    </tr>
+                    ';
+                }
+            ?>
+        </div>
+    
 <?php
 include ('footer.html');
 ?>

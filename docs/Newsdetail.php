@@ -15,7 +15,17 @@ include('admin/db/config.php');
     <link rel="stylesheet" href="../css/animate.css">
     <link rel="stylesheet" href="../css/fontawesome.css">
     <link rel="stylesheet" href="css/styleblog.css">
-
+<style>
+    .wrap{
+        background-color: black;
+    }
+    #ftco-navbar{
+        background-color:black;
+    }
+    #ftco-nav{
+        background-color:black;
+    }
+    </style>
 </head>
 
 <body>
@@ -23,20 +33,17 @@ include('admin/db/config.php');
     include ('heading.html');
     include ('nav.html');
     ?>
-        <div class="tour-info">
+        <div class="tour-info" style="margin-top:50px">
             <?php
                 $sql = mysqli_query($con, "SELECT * FROM blog ORDER BY id ASC") or die(mysqli_error($con));
                 if(mysqli_num_rows($sql) > 0) {
-                    $no = 1;
+                    $no = $_POST['id'];;
                     while($data = mysqli_fetch_assoc($sql)) {
                         echo '
                             <center>
                                 <h3>'.$data['judul'].'</h3>
                             <br>
                             <img class="profilimg" style="border-radius:12px;" src="../../admin/cempaka/images/'.$data['foto'].'" style="border-radius:12px;padding:1em 0">
-                            <a href="../../vt_cempaka/index.html"><br><br>
-                            <input type="submit" class="tourbtn" value="Mulai Tur">
-                            </a>
                             </center>
                             ';
                         echo nl2br('<p class="p tourp" style="margin-bottom:-2em;text-align:justify;text-justify: inter-word;">'.$data['deskripsi'].'</p>');
